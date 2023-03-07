@@ -1,0 +1,13 @@
+## Interface: 30300
+## Version: 4.3.0
+## Title: CensusPlus Duskhaven
+## Notes: Collects and displays census information. This AddOn is licenced under the GNU GPL, see GPL.txt for details.
+## Original Author: Ian Pieragostini
+## Modified By: Cooper Sellers - www.warcraftrealms.com 
+## Turtle Support By: Sylvie
+## SavedVariables: CensusPlus_Database,CensusPlus_BGInfo,CensusPlus_Unhandled
+## SavedVariablesPerCharacter: CensusPlus_DoThisCharacter,CensusPlus_PerCharInfo
+## X-Website: http://www.warcraftrealms.com
+CensusPlus.xml
+CensusButton.xml
+CensusPlayerList.xml
