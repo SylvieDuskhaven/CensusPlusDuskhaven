@@ -51,7 +51,7 @@ local CensusPlus_VERSION = "4.3.0"; 			-- version
 local CensusPlus_MAXBARHEIGHT = 128;			-- Length of blue bars
 local CensusPlus_NUMGUILDBUTTONS = 10;			-- How many guild buttons are on the UI?
 local MAX_CHARACTER_LEVEL = 60;					-- Maximum level a PC can attain
-local MAX_WHO_RESULTS = 49;						-- Maximum number of who results the server will return
+local MAX_WHO_RESULTS = 48;						-- Maximum number of who results the server will return
 CensusPlus_GUILDBUTTONSIZEY = 16;
 local CensusPlus_UPDATEDELAY = 5;				-- Delay time between /who messages
 local CP_MAX_TIMES = 50;
@@ -443,15 +443,15 @@ local function GetRaceClasses(race)
 	if (race == CENSUSPlus_ORC) then
 		ret = {CENSUSPlus_WARRIOR, CENSUSPlus_HUNTER, CENSUSPlus_ROGUE, CENSUSPlus_SHAMAN, CENSUSPlus_WARLOCK, CENSUSPlus_DEATHKNIGHT};
 	elseif (race == CENSUSPlus_TAUREN) then
-		ret = {CENSUSPlus_WARRIOR, CENSUSPlus_HUNTER, CENSUSPlus_SHAMAN, CENSUSPlus_DRUID, CENSUSPlus_DEATHKNIGHT, CENSUSPlus_PALADIN};
+		ret = {CENSUSPlus_WARRIOR, CENSUSPlus_HUNTER, CENSUSPlus_SHAMAN, CENSUSPlus_DRUID, CENSUSPlus_DEATHKNIGHT, CENSUSPlus_PALADIN, CENSUSPlus_PRIEST};
 	elseif (race == CENSUSPlus_TROLL) then
 		ret = {CENSUSPlus_WARRIOR, CENSUSPlus_HUNTER, CENSUSPlus_ROGUE, CENSUSPlus_PRIEST, CENSUSPlus_SHAMAN, CENSUSPlus_MAGE, CENSUSPlus_DEATHKNIGHT, CENSUSPlus_DRUID};
 	elseif (race == CENSUSPlus_UNDEAD) then
-		ret = {CENSUSPlus_WARRIOR, CENSUSPlus_HUNTER, CENSUSPlus_ROGUE, CENSUSPlus_PRIEST, CENSUSPlus_MAGE, CENSUSPlus_WARLOCK, CENSUSPlus_DEATHKNIGHT};
+		ret = {CENSUSPlus_WARRIOR, CENSUSPlus_HUNTER, CENSUSPlus_ROGUE, CENSUSPlus_PRIEST, CENSUSPlus_MAGE, CENSUSPlus_WARLOCK, CENSUSPlus_DEATHKNIGHT, CENSUSPlus_DRUID};
 	elseif (race == CENSUSPlus_DWARF) then
-		ret = {CENSUSPlus_WARRIOR, CENSUSPlus_PALADIN, CENSUSPlus_HUNTER, CENSUSPlus_ROGUE, CENSUSPlus_PRIEST, CENSUSPlus_SHAMAN, CENSUSPlus_DEATHKNIGHT};
+		ret = {CENSUSPlus_WARRIOR, CENSUSPlus_PALADIN, CENSUSPlus_HUNTER, CENSUSPlus_ROGUE, CENSUSPlus_PRIEST, CENSUSPlus_SHAMAN, CENSUSPlus_DEATHKNIGHT, CENSUSPlus_DRUID};
 	elseif (race == CENSUSPlus_GNOME) then
-		ret = {CENSUSPlus_WARRIOR, CENSUSPlus_HUNTER, CENSUSPlus_ROGUE, CENSUSPlus_MAGE, CENSUSPlus_WARLOCK, CENSUSPlus_DEATHKNIGHT};
+		ret = {CENSUSPlus_WARRIOR, CENSUSPlus_HUNTER, CENSUSPlus_ROGUE, CENSUSPlus_MAGE, CENSUSPlus_WARLOCK, CENSUSPlus_DEATHKNIGHT, CENSUSPlus_PRIEST};
 	elseif (race == CENSUSPlus_HUMAN) then
 		ret = {CENSUSPlus_WARRIOR, CENSUSPlus_PALADIN, CENSUSPlus_HUNTER, CENSUSPlus_ROGUE, CENSUSPlus_PRIEST, CENSUSPlus_MAGE, CENSUSPlus_WARLOCK, CENSUSPlus_DRUID, CENSUSPlus_DEATHKNIGHT};
 	elseif (race == CENSUSPlus_NIGHTELF) then
@@ -697,6 +697,7 @@ function CP_ProcessWhoEvent(query, ...)
 	
 	CensusPlus_ProcessWhoResults();
 	if (numWhoResults > MAX_WHO_RESULTS) then
+	
 		--
 		-- Who list is overflowed, split the query to make the return smaller
 		--
@@ -1055,6 +1056,7 @@ end
 --
 -----------------------------------------------------------------------------------
 function CensusPlus_InternalWho( search, level )
+print("search: "..search)
 
 	if( g_CensusPlusLocale == "N/A" ) then
 		return;
@@ -2007,7 +2009,7 @@ function CensusPlus_OnUpdate()
 		if (not g_WaitingForWhoUpdate or delta > CensusPlus_UPDATEDELAY) then
 			g_LastOnUpdateTime = now;
 			if (g_WaitingForWhoUpdate == true ) then
-			
+		
 				--
 				--  First check to see if we are waiting for an override
 				--
